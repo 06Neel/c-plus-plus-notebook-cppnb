@@ -1,0 +1,6 @@
+{
+  "cppnb.compilerPath": "C:\\MinGW\\bin\\g++.exe",
+  "cppnb.std": "c++17",
+  "cppnb.timeoutMs": 5000,
+  "cppnb.askForInput": "auto"   // "auto" | "always" | "never"
+}

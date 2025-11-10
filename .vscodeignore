@@ -1,0 +1,9 @@
+.git/**
+.vscode/**
+src/**
+tests/**
+**/*.map
+**/*.ts
+node_modules/**
+out/test/**
+.DS_Store

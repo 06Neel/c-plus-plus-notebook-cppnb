@@ -1,0 +1,152 @@
+{
+  "name": "cpp-notebook",
+  "displayName": "C++ Notebook (cppnb)",
+  "description": "Notebook-style C++ cells in VS Code. Compile state cells to .o, link in run cells, prompt for input when needed.",
+  "version": "0.0.1",
+  "publisher": "06Neel",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Education"
+  ],
+  "keywords": [
+    "cpp",
+    "c++",
+    "notebook",
+    "g++",
+    "msys2",
+    "mingw",
+    "education"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onNotebook:cpp-notebook",
+    "onCommand:cppnb.newNotebook",
+    "onCommand:cppnb.clearState",
+    "onCommand:cppnb.runCellWithInput"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cppnb.newNotebook",
+        "title": "C++ Notebook: New Notebook"
+      },
+      {
+        "command": "cppnb.clearState",
+        "title": "C++ Notebook: Clear Shared State"
+      },
+      {
+        "command": "cppnb.runCellWithInput",
+        "title": "C++ Notebook: Run Cell With Input",
+        "icon": "$(terminal-input)"
+      }
+    ],
+    "menus": {
+      "notebook/cell/title": [
+        {
+          "command": "cppnb.runCellWithInput",
+          "when": "notebookType == cpp-notebook && notebookCellKind == code",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cppnb.runCellWithInput",
+          "when": "notebookType == cpp-notebook && notebookCellKind == code",
+          "group": "more@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "cppnb.runCellWithInput",
+          "when": "notebookType == cpp-notebook"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "cppnb.runCellWithInput",
+        "key": "ctrl+alt+enter",
+        "when": "notebookEditorFocused && notebookType == cpp-notebook"
+      },
+      {
+        "command": "cppnb.runCellWithInput",
+        "key": "shift+alt+enter",
+        "when": "notebookEditorFocused && notebookType == cpp-notebook"
+      }
+    ],
+    "notebooks": [
+      {
+        "type": "cpp-notebook",
+        "displayName": "C++ Notebook",
+        "selector": [
+          {
+            "filenamePattern": "*.cppnb"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "C++ Notebook",
+      "properties": {
+        "cppnb.compilerPath": {
+          "type": "string",
+          "default": "g++",
+          "description": "Path to g++ (MSYS2/mingw-w64). Example: C:\\\\msys64\\\\mingw64\\\\bin\\\\g++.exe"
+        },
+        "cppnb.std": {
+          "type": "string",
+          "default": "c++17",
+          "enum": [
+            "c++14",
+            "c++17",
+            "c++20",
+            "c++23"
+          ],
+          "description": "C++ standard used to compile cells."
+        },
+        "cppnb.timeoutMs": {
+          "type": "number",
+          "default": 5000,
+          "description": "Execution timeout per cell in milliseconds."
+        },
+        "cppnb.extraArgs": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "Extra arguments for g++."
+        },
+        "cppnb.askForInput": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "always",
+            "never"
+          ],
+          "description": "When to prompt for program input. 'auto' asks only if the code appears to read from stdin (cin/getline/scanf/etc.)."
+        },
+        "cppnb.prettyUI": {
+          "type": "boolean",
+          "default": true,
+          "description": "Render cell outputs in rounded cards with soft shadows."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --format=cjs --platform=node --external:vscode",
+    "watch": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --format=cjs --platform=node --external:vscode --watch",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.27.0",
+    "typescript": "^5.6.3",
+    "@vscode/vsce": "^3.0.0"
+  }
+}

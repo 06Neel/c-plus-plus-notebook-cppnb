@@ -1,0 +1,24 @@
+{
+  "cells": [
+    {
+      "kind": "markdown",
+      "text": "# Welcome to C++ Notebook\\n- This is a markdown cell.\\n- Below is a code cell you can run."
+    },
+    {
+      "kind": "code",
+      "text": "#include <iostream>\\nint main(){ std::cout << \"Hello from C++ Notebook!\\\\n\"; }"
+    },
+    {
+      "kind": "markdown",
+      "text": "You can also create headers in one cell and include them in another."
+    },
+    {
+      "kind": "code",
+      "text": "// helper header example (save to file)\n#include <fstream>\nint main(){ std::ofstream(\"helper.hpp\") << \"#pragma once\\\\ninline int add(int a,int b){return a+b;}\\n\"; }"
+    },
+    {
+      "kind": "code",
+      "text": "#include <iostream>\\n#include \"helper.hpp\"\\nint main(){ std::cout << add(7,5) << \"\\\\n\"; }"
+    }
+  ]
+}
