@@ -1,6 +1,6 @@
 {
-  "name": "cpp-notebook",
-  "displayName": "C++ Notebook (cppnb)",
+  "name": "cppnb",
+  "displayName": "cppnb",
   "description": "Notebook-style C++ cells in VS Code. Compile state cells to .o, link in run cells, prompt for input when needed.",
   "version": "0.0.1",
   "publisher": "06Neel",
